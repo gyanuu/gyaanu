@@ -1,0 +1,14 @@
+-------------------------
+To-Do List
+
+[ ] Projects Section
+[ ] Contact Form
+
+-------------------------
+Changes To Make
+[ ] Change the color theme
+[ ] Make hero less wordy
+[ ] Remove useless animations
+[ ] Add subtle animations
+[ ] Make header auto-hide
+[ ] Remove buzz words

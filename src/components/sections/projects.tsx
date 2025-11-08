@@ -1,25 +1,33 @@
 import { toast } from "sonner";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-const projects = [
+type Project = {
+  name: string;
+  description: string;
+  tech: string[];
+  link: string;
+  github: string;
+  image: string;
+  cmd?: string;
+};
+
+const projects: Project[] = [
   {
     name: "AI Saas Platform",
     description:
-      "Web-based 8085 microprocessor simulator with an interactive interface inspired by Jubin Mitra's Java-based simulator.",
-    tech: ["React", "Tailwind CSS", "Node.js" , "Express",],
+      "A modern AI-powered SaaS platform with multiple AI tools and features for productivity and creativity.",
+    tech: ["React", "Tailwind CSS", "Node.js", "Express"],
     link: "https://quick-ai-delta-olive.vercel.app",
     github: "https://github.com/gyanuu/QuickAI",
     image: "/images/Ai Saas.png",
-    cmd: undefined,
   },
   {
-    name: "Doctor Appointment System ",
-    description:  "A system to manage doctor appointments, allowing patients to book and manage their appointments easily.",
-    tech: ["React", "Tailwind CSS", "Node.js" , "Express",],
+    name: "Doctor Appointment System",
+    description: "A system to manage doctor appointments, allowing patients to book and manage their appointments easily.",
+    tech: ["React", "Tailwind CSS", "Node.js", "Express"],
     link: "https://prescripto-frontend-eosin.vercel.app/",
     github: "https://github.com/gyanuu/prescripto-full-stack",
     image: "/images/Doctor.png",
-    cmd: undefined,
   },
   {
     name: "Thirtysix Studio Clone",
@@ -29,7 +37,6 @@ const projects = [
     link: "#",
     github: "https://github.com/gyanuu",
     image: "/images/Thirtysix.png",
-    cmd: undefined,
   },
 ];
 
@@ -79,10 +86,10 @@ export const ProjectsSection = () => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <p
-                        className="text-primary-text font-mono text-sm font-medium underline decoration-dashed"
+                        className="text-primary-text font-mono text-sm font-medium underline decoration-dashed cursor-pointer"
                         onClick={() => {
                           navigator.clipboard
-                            .writeText(project.cmd)
+                            .writeText(project.cmd!)
                             .then(() => {
                               toast.success("Command copied to clipboard");
                             });

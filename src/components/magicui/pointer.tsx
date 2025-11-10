@@ -14,14 +14,28 @@ export function Pointer({
   style,
   children,
   ...props
-}: Omit<HTMLMotionProps<"div">, "ref">): JSX.Element {
+}: Omit<HTMLMotionProps<"div">, "ref">): JSX.Element | null {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const [isActive, setIsActive] = useState<boolean>(true);
+  const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && containerRef.current) {
+    // Check if device has touch support
+    const checkTouchDevice = () => {
+      return (
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia('(pointer: coarse)').matches
+      );
+    };
+    
+    setIsTouchDevice(checkTouchDevice());
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && containerRef.current && !isTouchDevice) {
       // Get the parent element directly from the ref
       const parentElement = containerRef.current.parentElement;
 
@@ -57,7 +71,12 @@ export function Pointer({
         };
       }
     }
-  }, [x, y]);
+  }, [x, y, isTouchDevice]);
+
+  // Don't render custom cursor on touch devices
+  if (isTouchDevice) {
+    return null;
+  }
 
   return (
     <>

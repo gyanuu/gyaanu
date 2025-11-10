@@ -151,7 +151,7 @@ export const HeroSection = () => {
           );
         })}
         <a
-          href="https://drive.google.com/file/d/1dlnZ3i1AOpJKKxPPxYOajP7OzL7zzwCT/view?usp=drive_link"
+          href="https://drive.google.com/file/d/1nRTWE3kWdDr2cKhaAAuS5yzm-9hQCcQX/view?usp=sharing"
           download
           target="_blank"
           rel="noopener noreferrer"
